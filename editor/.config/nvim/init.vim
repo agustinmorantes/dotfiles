@@ -1,5 +1,5 @@
-" Fish doesn't play all that well with others
-set shell=/bin/bash
+" Zsh might not play all that well with others ? idk
+"set shell=/bin/bash
 let mapleader = "\<Space>"
 
 " =============================================================================
@@ -12,6 +12,10 @@ set rtp+=~/dev/others/base16/templates/vim/
 call plug#begin()
 
 " Load plugins
+" Themes
+Plug 'tomasr/molokai'
+Plug 'chriskempson/base16-vim'
+
 " VIM enhancements
 Plug 'ciaranm/securemodelines'
 Plug 'editorconfig/editorconfig-vim'
@@ -321,7 +325,6 @@ set timeoutlen=300 " http://stackoverflow.com/questions/2158516/delay-before-o-o
 set encoding=utf-8
 set scrolloff=2
 set noshowmode
-set hidden
 set nowrap
 set nojoinspaces
 let g:sneak#s_next = 1
@@ -351,11 +354,11 @@ set wildmenu
 set wildmode=list:longest
 set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
 
-" Use wide tabs
-set shiftwidth=8
-set softtabstop=8
-set tabstop=8
-set noexpandtab
+" Don't Use wide tabs
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set expandtab
 
 " Wrapping options
 set formatoptions=tc " wrap text and comments using textwidth
@@ -394,16 +397,18 @@ set ttyfast
 set lazyredraw
 set synmaxcol=500
 set laststatus=2
-set relativenumber " Relative line numbers
+"set relativenumber " Relative line numbers
 set number " Also show current absolute line
 set diffopt+=iwhite " No whitespace in vimdiff
 " Make diffing better: https://vimways.org/2018/the-power-of-diff/
 set diffopt+=algorithm:patience
 set diffopt+=indent-heuristic
 set colorcolumn=80 " and give me a colored column
-set showcmd " Show (partial) command in status line.
 set mouse=a " Enable mouse usage (all modes) in terminals
 set shortmess+=c " don't give |ins-completion-menu| messages.
+set noshowcmd
+set cmdheight=1
+set hidden
 
 " Show those damn hidden characters
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
@@ -448,6 +453,14 @@ inoremap <C-f> :sus<cr>
 vnoremap <C-f> :sus<cr>
 nnoremap <C-f> :sus<cr>
 
+" Ctrl+Z and Ctrl+Y to redo, I need those thanks
+inoremap <C-z> <Esc>ui
+inoremap <C-y> <Esc><C-r>i
+nnoremap <C-z> u
+nnoremap <C-y> <C-r>
+vnoremap <C-z> <Esc>uv
+vnoremap <C-y> <Esc><C-r>v
+
 " Jump to start and end of line using the home row keys
 map H ^
 map L $
@@ -482,6 +495,7 @@ command! -bang -nargs=? -complete=dir Files
 nnoremap <leader>o :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " No arrow keys --- force yourself to use the home row
+" Sorry, won't do that
 "nnoremap <up> <nop>
 "nnoremap <down> <nop>
 "inoremap <up> <nop>
@@ -512,7 +526,6 @@ noremap <leader>m ct_
 " I can type :help on my own, thanks.
 map <F1> <Esc>
 imap <F1> <Esc>
-
 
 " =============================================================================
 " # Autocommands

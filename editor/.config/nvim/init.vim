@@ -97,7 +97,42 @@ cmp.setup({
   },
   mapping = {
     -- Tab immediately completes. C-n/C-p to select.
-    ['<Tab>'] = cmp.mapping.confirm({ select = true })
+    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+    ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+    ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
+    ['<C-n>'] = cmp.mapping({
+        c = function()
+	    if cmp.visible() then
+                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+	    else
+                vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
+	    end
+        end,
+        i = function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+            else
+                fallback()
+            end
+        end
+    }),
+    ['<C-p>'] = cmp.mapping({
+	c = function()
+            if cmp.visible() then
+                cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+            else
+                vim.api.nvim_feedkeys(t('<Up>'), 'n', true)
+            end
+        end,
+        i = function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+            else
+                fallback()
+            end
+        end
+    }),
   },
   sources = cmp.config.sources({
     -- TODO: currently snippets from lsp end up getting prioritized -- stop that!

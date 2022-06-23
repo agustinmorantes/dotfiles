@@ -1,0 +1,12 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = Agustín Morantes
+	email = agustinmorantes@gmail.com
+	signingkey = 52AC32AA0CD44EB0
+[commit]
+	gpgsign = true
+[pull]
+	ff = true
+[init]
+	defaultBranch = main

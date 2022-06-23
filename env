@@ -1,0 +1,25 @@
+# This file sets environment variables that should be globally set on the system
+# That is, across graphical and non-graphical logins, and across all shell types
+#
+# Note that it is _not_ important to set things like FZF_DEFAULT_COMMAND here since
+# that is only relevant when using an interactive shell, so we may as well just set
+# that directly in the shell config.
+
+
+export EDITOR=micro
+export NAME="Agustín Morantes"
+export EMAIL="agustinmorantes@gmail.com"
+
+export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/.local/bin
+
+# Globals
+TZ=America/Argentina/Buenos_Aires
+
+# make less better
+# X = leave content on-screen
+# F = quit automatically if less than one screenfull
+# R = raw terminal characters (fixes git diff)
+#     see http://jugglingbits.wordpress.com/2010/03/24/a-better-less-playing-nice-with-git/
+export LESS="-F -X -R"

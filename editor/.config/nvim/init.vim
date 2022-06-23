@@ -16,6 +16,7 @@ call plug#begin()
 Plug 'ciaranm/securemodelines'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'justinmk/vim-sneak'
+Plug 'Raimondi/delimitMate'
 
 " GUI enhancements
 Plug 'itchyny/lightline.vim'
@@ -98,9 +99,15 @@ cmp.setup({
   mapping = {
     -- Tab immediately completes. C-n/C-p to select.
     ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+    
+    -- Use arrow keys to select item
     ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
     ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+    
+    -- Use Ctrl+Space to invoke cmp
     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
+    
+
     ['<C-n>'] = cmp.mapping({
         c = function()
 	    if cmp.visible() then

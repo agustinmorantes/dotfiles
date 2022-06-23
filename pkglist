@@ -6,3 +6,5 @@ build-essential
 curl
 wget
 git
+bat
+trash-cli

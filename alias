@@ -1,3 +1,6 @@
 alias bat="batcat -P"
 alias cat=bat
 alias rm=trash
+alias vi=nvim
+alias vim=nvim
+

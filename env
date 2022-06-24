@@ -15,7 +15,7 @@ export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.local/bin
 
 # Globals
-TZ=America/Argentina/Buenos_Aires
+export TZ=America/Argentina/Buenos_Aires
 
 # make less better
 # X = leave content on-screen

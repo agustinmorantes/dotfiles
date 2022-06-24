@@ -6,7 +6,7 @@
 # that directly in the shell config.
 
 
-export EDITOR=micro
+export EDITOR=nvim
 export NAME="Agustín Morantes"
 export EMAIL="agustinmorantes@gmail.com"
 

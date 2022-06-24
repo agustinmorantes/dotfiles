@@ -11,6 +11,12 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+# Local Neovim, for unprivileged users
+# wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+# tar -xzf nvim-linux64.tar.gz
+# cp nvim-linux64/bin/nvim ~/.bin/nvim
+# rm -Rf nvim-linux64 nvim-linux64.tar.gz
+
 # Symbolic Links
 CURDIR=$(pwd)
 mv ~/.bashrc ~/.bashrc.old

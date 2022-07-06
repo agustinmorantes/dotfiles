@@ -5,8 +5,13 @@
 	email = agustinmorantes@gmail.com
 	signingkey = 52AC32AA0CD44EB0
 [commit]
-	gpgsign = true
+	gpgsign = false
 [pull]
 	ff = true
 [init]
 	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

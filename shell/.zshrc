@@ -41,7 +41,7 @@ HYPHEN_INSENSITIVE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -107,3 +107,12 @@ export DEVKITPRO=/opt/devkitpro
 export DEVKITA64=/opt/devkitpro/devkitA64
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Load aliases and env vars
+source "$HOME/.dotfiles/alias"
+source "$HOME/.dotfiles/env"
+
+# Cargo stuff
+source "$HOME/.cargo/env"
+
+export PATH=$PATH:/home/agus/.spicetify

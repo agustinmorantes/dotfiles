@@ -1,6 +1,6 @@
-alias bat="batcat -P"
-alias cat=bat
+alias cat="bat -P"
 alias rm=trash
 alias vi=nvim
 alias vim=nvim
+#alias sudo="pkexec env DISPLAY='${DISPLAY:-}' XAUTHORITY='${XAUTHORITY:-}'"
 

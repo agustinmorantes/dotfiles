@@ -16,17 +16,10 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
+# Load aliases and env vars
 source "$HOME/.dotfiles/alias"
 source "$HOME/.dotfiles/env"
 
+# Cargo stuff
 source "$HOME/.cargo/env"
+

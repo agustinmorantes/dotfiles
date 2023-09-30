@@ -1,6 +1,15 @@
-alias cat="bat -P"
+alias cat="batcat -P"
 alias rm=trash
 alias vi=nvim
 alias vim=nvim
 #alias sudo="pkexec env DISPLAY='${DISPLAY:-}' XAUTHORITY='${XAUTHORITY:-}'"
+
+alias code=code-insiders
+alias code-stable="/mnt/c/Users/Agus/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code"
+
+alias npm=pnpm
+
+batdiff() {
+    git diff --name-only --relative --diff-filter=d | xargs batcat --diff
+}
 

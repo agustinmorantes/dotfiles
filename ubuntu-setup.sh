@@ -27,17 +27,9 @@ rm nvim-linux64.deb
 
 # Symbolic Links
 CURDIR=$(pwd)
-mv ~/.bashrc ~/.bashrc.old
-mv ~/.zshrc ~/.zshrc.old
 mv ~/.gitconfig ~/.gitconfig.old
-mv ~/.profile ~/.profile.old
-mv ~/.zprofile ~/.zprofile.old
 mv ~/.config/nvim ~/.config/nvim.old
 mv ~/.vimdid ~/.vimdid.old
-ln -sv "$CURDIR/shell/.bashrc" ~
-ln -sv "$CURDIR/shell/.zshrc" ~
 ln -sv "$CURDIR/git/.gitconfig" ~
-ln -sv "$CURDIR/shell/.profile" ~
-ln -sv "$CURDIR/shell/.profile" ~/.zprofile
 ln -sv "$CURDIR/editor/.config/nvim" ~/.config
 ln -sv "$CURDIR/editor/.vimdid" ~

@@ -109,6 +109,15 @@ require('lazy').setup({
   {
     'ellisonleao/gruvbox.nvim',
     priority = 1000,
+    config = function()
+      -- Initialize and configure gruvbox.nvim
+      require("gruvbox").setup({
+        contrast = "hard", -- can be "hard", "soft" or empty string
+        transparent_mode = true,
+      })
+      vim.o.background = "dark" -- or "light" for light mode
+      vim.cmd.colorscheme('gruvbox')
+    end,
   },
 
   {
@@ -240,12 +249,9 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Initialize and configure gruvbox.nvim
-require("gruvbox").setup({
-  contrast = "hard", -- can be "hard", "soft" or empty string
-  transparent_mode = true,
-})
-vim.cmd.colorscheme 'gruvbox'
+-- Insert new line in normal mode with Shift + Enter
+vim.keymap.set('n', '<S-Enter>', 'moO<Esc>`o', { expr = true, silent = true })
+
 
 
 -- [[ Highlight on yank ]]

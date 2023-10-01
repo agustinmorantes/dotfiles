@@ -70,9 +70,19 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
 plugins=(
-	git
-	zsh-autosuggestions
+    fzf-tab
+    fzf
+    sudo
+    gitfast
+    gitignore
+    gh
+    dnf
+    nvm
+    npm
+    rust
+    zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -108,6 +118,11 @@ export DEVKITA64=/opt/devkitpro/devkitA64
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# NVM Setup
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # Load aliases and env vars
 source "$HOME/.dotfiles/alias"
 source "$HOME/.dotfiles/env"
@@ -115,4 +130,3 @@ source "$HOME/.dotfiles/env"
 # Cargo stuff
 source "$HOME/.cargo/env"
 
-export PATH=$PATH:/home/agus/.spicetify

@@ -247,8 +247,8 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Insert new line in normal mode with Shift + Enter
-vim.keymap.set('n', '<S-Enter>', 'moO<Esc>`o', { expr = true, silent = true })
-
+vim.keymap.set('n', '<S-Enter>', 'o<ESC>', { silent = true })
+vim.keymap.set('n', '<C-Enter>', 'O<ESC>', { silent = true })
 
 
 -- [[ Highlight on yank ]]

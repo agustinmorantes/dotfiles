@@ -74,14 +74,13 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(
     fzf-tab
     fzf
-    sudo
     gitfast
     gitignore
     gh
-    dnf
     nvm
     npm
     rust
+    docker
     zsh-autosuggestions
 )
 
@@ -113,8 +112,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export DEVKITPRO=/opt/devkitpro
-export DEVKITA64=/opt/devkitpro/devkitA64
+# Load aliases and env vars
+source "$HOME/.dotfiles/alias"
+source "$HOME/.dotfiles/env"
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -123,10 +124,17 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Load aliases and env vars
-source "$HOME/.dotfiles/alias"
-source "$HOME/.dotfiles/env"
 
-# Cargo stuff
+# Cargo Setup
 source "$HOME/.cargo/env"
+
+# PNPM Setup
+export PNPM_HOME="/home/agus/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
 

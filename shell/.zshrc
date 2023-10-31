@@ -135,6 +135,3 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-

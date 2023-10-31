@@ -70,6 +70,11 @@ require('lazy').setup({
     },
   },
 
+  {
+    -- Function signature help plugin for CMP
+    'hrsh7th/cmp-nvim-lsp-signature-help'
+  },
+
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',  opts = {} },
   {
@@ -138,8 +143,8 @@ require('lazy').setup({
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
     opts = {
-     char = '┊',
-     show_trailing_blankline_indent = false,
+      char = '┊',
+      show_trailing_blankline_indent = false,
     },
   },
 
@@ -166,7 +171,11 @@ require('lazy').setup({
       },
     },
   },
-
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build =
+    'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+  },
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -175,6 +184,23 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+
+  {
+    -- Always show context for current scope
+    'nvim-treesitter/nvim-treesitter-context'
+  },
+
+  -- Autosave
+  { 'Pocco81/auto-save.nvim' },
+
+  {
+    'm4xshen/autoclose.nvim',
+    opts = {
+      keys = {
+        ["'"] = { disabled_filetypes = { "rust" } }
+      }
+    }
+  }
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -200,7 +226,17 @@ vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
-vim.wo.relativenumber= true
+vim.wo.relativenumber = true
+vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
+  callback = function()
+    vim.wo.relativenumber = false
+  end
+})
+vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+  callback = function()
+    vim.wo.relativenumber = true
+  end
+})
 
 -- Set caret offset scrolling
 vim.wo.scrolloff = 10
@@ -250,6 +286,11 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('n', '<S-Enter>', 'o<ESC>', { silent = true })
 vim.keymap.set('n', '<C-Enter>', 'O<ESC>', { silent = true })
 
+-- Move line up and down with alt
+vim.keymap.set('n', '<A-j>', ':m .+1<CR>==')     -- move line up(n)
+vim.keymap.set('n', '<A-k>', ':m .-2<CR>==')     -- move line down(n)
+vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv") -- move line up(v)
+vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv") -- move line down(v)
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -397,6 +438,8 @@ local on_attach = function(_, bufnr)
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
+  nmap('<leader>fm', vim.lsp.buf.format, '[F]or[m]at')
+
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
@@ -427,7 +470,17 @@ local servers = {
   -- clangd = {},
   -- gopls = {},
   -- pyright = {},
-  -- rust_analyzer = {},
+  rust_analyzer = {
+    cargo = {
+      allFeatures = true
+    },
+    diagnostics = {
+      enable = true,
+      experimental = {
+        enable = true
+      }
+    }
+  },
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
@@ -509,6 +562,7 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'nvim_lsp_signature_help' }
   },
 }
 

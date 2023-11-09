@@ -36,7 +36,7 @@ return {
   },
 
   -- Autosave
-  { 'Pocco81/auto-save.nvim' },
+  -- { 'Pocco81/auto-save.nvim' },
 
   -- Autoclose brackets/quotes
   {

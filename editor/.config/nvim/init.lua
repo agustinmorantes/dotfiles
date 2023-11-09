@@ -345,6 +345,9 @@ vim.defer_fn(function()
         },
       },
     },
+    modules = {},
+    sync_install = true,
+    ignore_install = {},
   }
 end, 0)
 
